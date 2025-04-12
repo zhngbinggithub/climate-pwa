@@ -9,3 +9,18 @@ img {
   margin-top: 20px;
   border-radius: 12px;
 }
+body.clear {
+  background: url("../images/clear.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #222;
+}
+body.rain {
+  background: url("../images/rain.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+body.thunderstorm {
+  background: url("../images/thunderstorm.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}

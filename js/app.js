@@ -7,14 +7,20 @@ async function applyWeatherStrategy() {
   const weather = await fetchWeather(); // 调用weather.js中的方法
   document.getElementById("weather-info").innerText = `当前天气：${weather}`;
 
+ // const image = document.getElementById("main-image");
+  
   const image = document.getElementById("main-image");
+  const lowerCaseWeather = weather.toLowerCase();
+  image.src = `images/${lowerCaseWeather}.jpg`;
+  image.alt = weather;
 
-  // 根据天气调整加载资源
-  if (weather === "Rain" || weather === "Thunderstorm") {
-    image.src = "images/light.jpg";
-  } else {
-    image.src = "images/full.jpg";
-  }
+ document.body.className = ""; // 清除原有样式
+  document.body.classList.add(lowerCaseWeather); // 添加天气样式
+ 
+ 
+ 
+
 }
 
 applyWeatherStrategy();
+ 
