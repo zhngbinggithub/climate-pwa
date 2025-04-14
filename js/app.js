@@ -13,7 +13,7 @@ if ('serviceWorker' in navigator) {
 
 async function applyWeatherStrategy() {
   const weather = await fetchWeather(); // 调用weather.js中的方法
-  document.getElementById("weather-info").innerText = `当前天气：${weather}`;
+  document.getElementById("weather-info").innerText = `current weather：${weather}`;
 
  // const image = document.getElementById("main-image");
   
@@ -35,7 +35,7 @@ applyWeatherStrategy();
  /*  3.联网检测 + 离线提示  */
  function showOfflineNotice() {
    const notice = document.createElement('div');
-   notice.textContent = '⚠ 当前为离线状态，天气为缓存数据，可能不是最新。';
+   notice.textContent = '⚠ 当前为离线状态，天气数据来自缓存，可能已过时。';
    notice.style.color = 'orange';
    notice.style.marginTop = '10px';
    notice.style.fontWeight = 'bold';
