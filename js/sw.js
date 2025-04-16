@@ -49,7 +49,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  if (url.pathname.includes('data/2.5/weather')) {
+  /* if (url.pathname.includes('data/2.5/weather')) {
     // 天气 API 使用网络优先策略 + 缓存备份
     event.respondWith(
       fetch(event.request)
@@ -61,8 +61,20 @@ self.addEventListener('fetch', (event) => {
           return response;
         })
         .catch(() => caches.match(event.request))
-    );
-  } else {
+    ); */
+	if (url.hostname.includes('zbcloudf-worker.workers.dev')) {
+	  // 使用网络优先策略
+	  event.respondWith(
+	    fetch(event.request)
+	      .then((response) => {
+	        const cloned = response.clone();
+	        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, cloned));
+	        return response;
+	      })
+	      .catch(() => caches.match(event.request))
+	  );
+	}
+ else {
     // 其他请求使用缓存优先策略
     event.respondWith(
       caches.match(event.request).then((response) => {
