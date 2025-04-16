@@ -13,8 +13,9 @@ async function applyWeatherStrategy() {
   const weather = await fetchWeather();
 
   const info = document.getElementById("weather-info");
-  info.innerText =
-    `📍 ${weather.city} | ${weather.condition} (${weather.description}) | 🌡 ${weather.temperature?.toFixed(1)}°C`;
+ 
+   info.innerText =
+  `📍 ${weather.city} | ${weather.condition} (${weather.description}) | 🌡 ${weather.temperature?.toFixed(1)}°C | 💧 ${weather.humidity}%`;
 
   // 添加天气图标
   if (weather.icon) {
