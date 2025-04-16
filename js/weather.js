@@ -6,7 +6,7 @@
   return data.weather[0].main; // 返回天气主类，如 "Rain", "Clear"
 } */
 // weather.js
-async function fetchWeather() {
+/* async function fetchWeather() {
   try {
     const res = await fetch("https://cloudflare-worker.zbcloudf-worker.workers.dev"); // 替换为你自己的 Worker 地址
     const data = await res.json();
@@ -14,5 +14,23 @@ async function fetchWeather() {
   } catch (e) {
     console.error("天气服务出错", e); //cloudflare-worker
     return "Unknown";
+  }
+}
+ */
+async function fetchWeather() {
+  try {
+    const res = await fetch("https://cloudflare-worker.zbcloudf-worker.workers.dev");
+    const data = await res.json();
+    return data;  // 👈 这里返回完整对象
+  } catch (e) {
+    console.error("天气服务出错", e);
+    return {
+      condition: "Unknown",
+      description: "Unavailable",
+      city: "Unknown",
+      temperature: null,
+      icon: "",
+      timestamp: new Date().toISOString()
+    };
   }
 }
